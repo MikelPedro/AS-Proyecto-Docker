@@ -1,0 +1,12 @@
+.cabecera {
+    background-color: #3498db; /* Azul primario */
+    color: #fff; /* Texto blanco */
+}
+
+.cabecera .container {
+    padding: 20px; /* Ajusta el relleno según sea necesario */
+}
+
+.cabecera .title {
+    font-size: 2.5rem; /* Tamaño del texto */
+}
