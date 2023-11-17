@@ -10,3 +10,31 @@
 .cabecera .title {
     font-size: 2.5rem; /* Tamaño del texto */
 }
+
+
+
+
+
+
+
+
+
+
+
+.footer {
+    background-color: #5a8fb3;/* Fondo principal, un tono de azul oscuro */
+    color: #ecf0f1; /* Texto en blanco */
+    padding: 20px 0; /* Ajusta el relleno según sea necesario */
+    text-align: center; /* Centra el texto */
+}
+
+.footer .centro {
+    max-width: 800px; /* Limita el ancho del contenido */
+    margin: 0 auto; /* Centra el contenido horizontalmente */
+}
+
+/* Estilos adicionales para el texto si es necesario */
+.footer p {
+    font-size: 1.2rem;
+    margin: 0; /* Elimina el margen por defecto */
+}

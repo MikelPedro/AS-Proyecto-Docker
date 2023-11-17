@@ -1,7 +1,16 @@
 from flask import Flask, render_template 
 app = Flask(__name__, template_folder='./app')
 
-@app.route('/')
+URL_ORIGINAL = "https://api.openweathermap.org/data/2.5/weather?id="
+API_KEY = open('api_key','r').read()
+
+
+
+def temperaturaACelsius():
+
+    
+
+@app.route('/', methods=['GET', 'POST'])
 def index():
     # Puedes pasar datos a la plantilla, por ejemplo, un título
     title = 'Ejemplo de Flask y HTML'
