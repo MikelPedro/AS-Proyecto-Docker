@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tutiempo</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+</head>
 </head>
 <body>
 
@@ -17,23 +19,58 @@
     </div>
 
     <div class="formulario">
+        
         <form action="/" method="post">
             <input type="text" id="ciudad" name="ciudad" placeholder="Ciudad">
-            <button type="submit">Buscar</button>
+            <div class="control">
+                <button class="button is-info">
+                    Añadir Ciudad
+                </button>
+            </div>
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        {% set message_class = 'is-success' %}
+                            {% if category == 'error' %}
+                                    {% set message_class = 'is-danger' %}
+                            {% endif %}
+                        <div class="notification {{ message_class }}">{{ message }}</div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
         </form>
-        <div class="bg-success p-2 text-dark bg-opacity-25" style="--bs-bg-opacity: .5; border: 1px solid #000; border-radius: 10px; margin-top: 30px;">
-        {% if data %}
-            <p style="font-weight: bold;">{{ ciudad }}</p>
+        
+        <div class="bg-success p-2 text-dark bg-opacity-25" style="--bs-bg-opacity: .5; border: 1px solid #000; border-radius: 10px; margin-top: 30px;">    
+        {% if data and data.lugar %}
+        
+            <p style="font-weight: bold;">{{ data.lugar }}</p>
             <p>Temperatura actual: {{ data.tempAct }}°C</p>
             <p>Temperatura mínima: {{ data.tempMin }}°C</p>
             <p>Temperatura máxima: {{ data.tempMax }}°C</p>
             <p>Humedad: {{ data.humedad }}%</p>
             <p>Descripción: {{ data.descrip }}</p>
-            <img src="https://openweathermap.org/img/wn/{{data.icono}}@2x.png" alt="Icono">
+            <figure class="image is-50x50">
+                <img src="https://openweathermap.org/img/wn/{{data.icono}}@2x.png" alt="Icono">
+            </figure>
         {% endif %}
         </div>
     </div>
 
+    <div>
+        <h2>Ciudades guardadas:</h2>
+        {% for ciudad in datos_save %}
+            <div class="ciudad-recuadro">
+                <p style="font-weight: bold;">{{ ciudad.nombre }}</p>
+                <p>Temperatura actual: {{ ciudad.tempAct }}°C</p>
+                <p>Temperatura mínima: {{ ciudad.tempMin }}°C</p>
+                <p>Temperatura máxima: {{ ciudad.tempMax }}°C</p>
+                <p>Humedad: {{ ciudad.humedad }}%</p>
+                <p>Descripción: {{ ciudad.descrip }}</p>
+                <img src="https://openweathermap.org/img/wn/{{ ciudad.icono }}@2x.png" alt="Icono">
+            </div>
+        {% endfor %}
+            
+    </div>
     <footer class="footer">
             <div class="centro">
                 

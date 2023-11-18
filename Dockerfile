@@ -6,6 +6,6 @@ COPY . /entrega/
 
 RUN pip install -r requirements.txt
 
-EXPOSE 3000
+COPY . .
 
-CMD python ./app.py
+CMD ["gunicorn", "webtiempo:app", "-b", "0.0.0.0:5000"]

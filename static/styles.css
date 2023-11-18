@@ -19,7 +19,7 @@ body {
 .formulario {
     text-align: center;
     margin-top: 20px;
-    flex: 1; /* Hace que el formulario ocupe el espacio restante vertical */
+    flex: 1; 
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -33,9 +33,10 @@ form {
 }
 
 input {
+
     padding: 10px;
     font-size: 16px;
-    width: 200px;
+    width: 300px;
     margin-bottom: 10px; /* Añadido un margen inferior para separar el input del botón */
 }
 
@@ -51,6 +52,33 @@ button {
 
 button:hover {
     background-color: #2980b9;
+}
+
+.notification.is-success {
+    background-color: #4CAF50; /* Verde */
+    color: #fff; /* Texto blanco */
+    padding: 10px;
+    margin-top: 10px; /* Añadido un margen superior para separar el mensaje del formulario */
+    border-radius: 5px;
+}
+
+/* Estilo para mensajes de error */
+.notification.is-danger {
+    background-color: #D9534F; /* Rojo */
+    color: #fff; /* Texto blanco */
+    padding: 10px;
+    margin-top: 10px; /* Añadido un margen superior para separar el mensaje del formulario */
+    border-radius: 5px;
+}
+
+.ciudad-recuadro {
+    background-color: #28a745; /* Verde */
+    padding: 10px;
+    color: #000; /* Texto oscuro */
+    border: 1px solid #000;
+    border-radius: 10px;
+    margin-top: 30px;
+    opacity: 0.75; /* Opacidad del fondo */
 }
 
 .footer {

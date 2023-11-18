@@ -1,22 +1,23 @@
+version: '3'
 services: 
   
   app:
     build: .
     environment:
-      - FLASK_APP=app.py
-    depends_on:
-      - db
-      
+      - FLASK_APP=webtiempo.py
+    networks:
+      - mynetwork
+    expose:
+      - "5000" 
+   
   web:
     image: nginx:latest
-    environment:
-     - ALLOW_OVERRIDE=true
+    networks:
+      - mynetwork
     ports:
-     - "3000:80"
-    depends_on:
-     - db
+      - "80:80"
     volumes:
-     - ./nginx/conf.d/:/etc/nginx/conf.d
+     - ./nginx.conf/:/etc/nginx/nginx.conf:ro
     
   db:
     image: mongo:latest
@@ -29,6 +30,11 @@ services:
     container_name: db
     volumes: 
       - mongo_data:/data/db
+    networks:
+      - mynetwork
 
 volumes:
-  mongodata:
+  mongo_data:
+
+networks:
+  mynetwork:
