@@ -15,7 +15,7 @@ class Tiempo:
     icono: str
 
 def get_datosTiempo(ciudad,API_KEY):
-    respuesta = requests.post(URL_ORIGINAL + str(ciudad) + "&appid=" + str(API_KEY)+ "&units=metric")
+    respuesta = requests.get(URL_ORIGINAL + str(ciudad) + "&appid=" + str(API_KEY)+ "&units=metric")
 
     datos = respuesta.json()
 

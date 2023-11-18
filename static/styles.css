@@ -1,40 +1,70 @@
-.cabecera {
-    background-color: #3498db; /* Azul primario */
-    color: #fff; /* Texto blanco */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Hace que el cuerpo ocupe al menos el 100% de la altura visible */
+    margin: 0;
 }
 
-.cabecera .container {
-    padding: 20px; /* Ajusta el relleno según sea necesario */
+.cabecera {
+    background-color: #3498db;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
 }
 
 .cabecera .title {
-    font-size: 2.5rem; /* Tamaño del texto */
+    font-size: 2.5rem;
 }
 
+.formulario {
+    text-align: center;
+    margin-top: 20px;
+    flex: 1; /* Hace que el formulario ocupe el espacio restante vertical */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
+form {
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
 
+input {
+    padding: 10px;
+    font-size: 16px;
+    width: 200px;
+    margin-bottom: 10px; /* Añadido un margen inferior para separar el input del botón */
+}
 
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
 
-
-
-
-
-
+button:hover {
+    background-color: #2980b9;
+}
 
 .footer {
-    background-color: #5a8fb3;/* Fondo principal, un tono de azul oscuro */
-    color: #ecf0f1; /* Texto en blanco */
-    padding: 20px 0; /* Ajusta el relleno según sea necesario */
-    text-align: center; /* Centra el texto */
+    background-color: #5a8fb3;
+    color: #ecf0f1;
+    padding: 20px 0;
+    text-align: center;
 }
-
 .footer .centro {
-    max-width: 800px; /* Limita el ancho del contenido */
-    margin: 0 auto; /* Centra el contenido horizontalmente */
+    max-width: 800px;
+    margin: 0 auto;
 }
 
-/* Estilos adicionales para el texto si es necesario */
 .footer p {
     font-size: 1.2rem;
-    margin: 0; /* Elimina el margen por defecto */
+    margin: 0;
 }

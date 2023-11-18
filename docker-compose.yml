@@ -1,23 +1,22 @@
 services: 
   
-  miapp:
+  app:
     build: .
-    ports:
-      - "3000:3000"
+    environment:
+      - FLASK_APP=app.py
     depends_on:
       - db
       
-
   web:
     image: nginx:latest
     environment:
      - ALLOW_OVERRIDE=true
     ports:
-     - "80:80"
+     - "3000:80"
     depends_on:
      - db
     volumes:
-     - ./app:/usr/share/ngins/html/
+     - ./nginx/conf.d/:/etc/nginx/conf.d
     
   db:
     image: mongo:latest
@@ -29,5 +28,7 @@ services:
         - "27017:27017"
     container_name: db
     volumes: 
-      - mongo_data: /data/db
+      - mongo_data:/data/db
 
+volumes:
+  mongodata:

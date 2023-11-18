@@ -16,9 +16,23 @@
         </div>
     </div>
 
-
-
-    
+    <div class="formulario">
+        <form action="/" method="post">
+            <input type="text" id="ciudad" name="ciudad" placeholder="Ciudad">
+            <button type="submit">Buscar</button>
+        </form>
+        <div class="bg-success p-2 text-dark bg-opacity-25" style="--bs-bg-opacity: .5; border: 1px solid #000; border-radius: 10px; margin-top: 30px;">
+        {% if data %}
+            <p style="font-weight: bold;">{{ ciudad }}</p>
+            <p>Temperatura actual: {{ data.tempAct }}°C</p>
+            <p>Temperatura mínima: {{ data.tempMin }}°C</p>
+            <p>Temperatura máxima: {{ data.tempMax }}°C</p>
+            <p>Humedad: {{ data.humedad }}%</p>
+            <p>Descripción: {{ data.descrip }}</p>
+            <img src="https://openweathermap.org/img/wn/{{data.icono}}@2x.png" alt="Icono">
+        {% endif %}
+        </div>
+    </div>
 
     <footer class="footer">
             <div class="centro">
