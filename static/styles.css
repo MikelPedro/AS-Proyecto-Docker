@@ -20,7 +20,7 @@ body {
     text-align: center;
     margin-top: 20px;
     flex: 1; 
-    display: flex;
+    display: inline-block;
     flex-direction: column;
     align-items: center;
 }
@@ -40,7 +40,7 @@ input {
     margin-bottom: 10px; /* Añadido un margen inferior para separar el input del botón */
 }
 
-button {
+.boton1 {
     padding: 10px 20px;
     font-size: 16px;
     background-color: #3498db;
@@ -50,8 +50,18 @@ button {
     cursor: pointer;
 }
 
-button:hover {
+.boton1:hover {
     background-color: #2980b9;
+}
+
+.boton-volver {
+    
+    justify-content: center;
+    align-items: center;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 .notification.is-success {

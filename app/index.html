@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 </head>
-</head>
 <body>
 
     <div class="cabecera">
@@ -19,11 +18,10 @@
     </div>
 
     <div class="formulario">
-        
         <form action="/" method="post">
             <input type="text" id="ciudad" name="ciudad" placeholder="Ciudad">
             <div class="control">
-                <button class="button is-info">
+                <button class="boton1">
                     Añadir Ciudad
                 </button>
             </div>
@@ -39,7 +37,9 @@
                 {% endif %}
             {% endwith %}
         </form>
-        
+        <a href="{{ url_for('cities') }}" style="display: inline-block; margin-top: 20px;">
+            <button class="boton1">Ver Ciudades</button>
+        </a>
         <div class="bg-success p-2 text-dark bg-opacity-25" style="--bs-bg-opacity: .5; border: 1px solid #000; border-radius: 10px; margin-top: 30px;">    
         {% if data and data.lugar %}
         
@@ -54,23 +54,9 @@
             </figure>
         {% endif %}
         </div>
+
     </div>
 
-    <div>
-        <h2>Ciudades guardadas:</h2>
-        {% for ciudad in datos_save %}
-            <div class="ciudad-recuadro">
-                <p style="font-weight: bold;">{{ ciudad.nombre }}</p>
-                <p>Temperatura actual: {{ ciudad.tempAct }}°C</p>
-                <p>Temperatura mínima: {{ ciudad.tempMin }}°C</p>
-                <p>Temperatura máxima: {{ ciudad.tempMax }}°C</p>
-                <p>Humedad: {{ ciudad.humedad }}%</p>
-                <p>Descripción: {{ ciudad.descrip }}</p>
-                <img src="https://openweathermap.org/img/wn/{{ ciudad.icono }}@2x.png" alt="Icono">
-            </div>
-        {% endfor %}
-            
-    </div>
     <footer class="footer">
             <div class="centro">
                 

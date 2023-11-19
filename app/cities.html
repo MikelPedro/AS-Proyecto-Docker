@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutiempo</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+</head>
+<body>
+
+    <div class="cabecera">
+        <div class="container">
+            <h1 class="title">
+                Ciudades y su climatología
+            </h1>
+        </div>
+    </div>
+    <div class="boton-volver">
+        <a href="/">
+            <button>Inicio</button>
+        </a>
+    </div>
+    <div class="bg-success p-2 text-dark bg-opacity-25" style="--bs-bg-opacity: .5; border: 1px solid #000; border-radius: 10px; margin-top: 30px;">    
+    
+        {% for ciudad_guardada in ciudades_guardadas %}
+            <li>{{ ciudad_guardada.lugar }} - {{ ciudad_guardada.tempAct }}°C</li>
+        {% endfor %}
+    
+    </div>
+
+</body>
+</html>
