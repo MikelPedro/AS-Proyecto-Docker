@@ -5,10 +5,14 @@ services:
     build: .
     environment:
       - FLASK_APP=webtiempo.py
+      - MONGO_HOST=db
+      - MONGO_PORT=27017
     ports:
       - "5000:5000"
     depends_on:
       - db
+    volumes:
+      - .:/app
     networks:
       - mynetwork
    
@@ -23,21 +27,13 @@ services:
     networks:
       - mynetwork
     
+  
   db:
     image: mongo:latest
-    restart: always
-    hostname: test_mongodb
-    environment:
-      - MONGO_INITDB_DATABASE=datostemp
-      - MONGO_INITDB_ROOT_USERNAME=root
-      - MONGO_INITDB_ROOT_PASSWORD=pass
-    ports:
-        - "27017:27017"
-    container_name: db
-    networks:
-      - mynetwork
     volumes: 
       - mongo_data:/data/db
+    ports:
+      - "27017:27017"
   
 volumes:
   mongo_data:
