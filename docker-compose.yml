@@ -39,7 +39,3 @@ services:
   
 volumes:
   mongo_data:
-
-networks:
-  mynetwork:
-    driver: bridge
