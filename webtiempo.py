@@ -7,6 +7,9 @@ import os
 
 app = Flask(__name__, template_folder='./app')
 app.config['SECRET_KEY'] = 'SecretoLlave' # esto es para le flash
+URL_ORIGINAL = "https://api.openweathermap.org/data/2.5/weather?id="
+API_KEY = open('api_key','r').read()
+
 #app.config['MONGO_URI'] = 'mongodb://localhost:27017/test'  # Reemplaza con la URI de tu base de datos
 
 #mongo = MongoClient(app.config['MONGO_URI'])
@@ -37,14 +40,18 @@ client = MongoClient(uri)
 mydb = client.datos 
 """
 
-mongodb_host = os.environ.get('MONGO_HOST', 'localhost')
-mongodb_port = int(os.environ.get('MONGO_PORT', '27017'))
-client = MongoClient(mongodb_host, mongodb_port)    #Configure the connection to the database
-db = client.proyecto   #Select the database
-ciudades = db.ciutemp #Select the collection
+#mongodb_host = os.environ.get('MONGO_HOST', 'localhost')
+#mongodb_port = int(os.environ.get('MONGO_PORT', '27017'))
+#client = MongoClient(mongodb_host, mongodb_port)    #Configure the connection to the database
+#db = client.proyecto   #Select the database
+#ciudades = db.ciutemp #Select the collection
 
-URL_ORIGINAL = "https://api.openweathermap.org/data/2.5/weather?id="
-API_KEY = open('api_key','r').read()
+mongo_uri = "mongodb://root:example@mongo:27017/mydatabase?authSource=admin"  # Reemplaza con tu propia URI si es necesario
+
+# Conectarse a la base de datos
+client = MongoClient(mongo_uri)
+db = client.mydatabase
+
 
 #def ciudad_existe(ciudad):
     # Verifica si la ciudad ya existe en la base de datos
@@ -69,20 +76,22 @@ def index():
             datosTiempo = get_datosTiempo(ciudad)
             if datosTiempo == 'Error':
                 error_msg = 'Esa no es una ciudad válida!'
-            # Crear un nuevo diccionario con solo los atributos que quieres insertar
-            datos = {
-                'lugar': datosTiempo.lugar,
-                'tempAct': datosTiempo.tempAct,
-                'tempMin': datosTiempo.tempMin,
-                'tempMax': datosTiempo.tempMax,
-                'humedad': datosTiempo.humedad,
-                'descrip': datosTiempo.descrip,
-                'fecha': datetime.now()  # Añadir la fecha actual
-            }
+                # Crear un nuevo diccionario con solo los atributos que quieres insertar
+            else:
 
-            ciudades.insert_one(datos)
-            print(datosTiempo)
-            #db.ciudades.insert_one(datosTiempo.__dict__)
+                datos = {
+                    'lugar': datosTiempo.lugar,
+                    'tempAct': datosTiempo.tempAct,
+                    'tempMin': datosTiempo.tempMin,
+                    'tempMax': datosTiempo.tempMax,
+                    'humedad': datosTiempo.humedad,
+                    'descrip': datosTiempo.descrip,
+                    'fecha': datetime.now()  # Añadir la fecha actual
+                }
+
+                db.ciudades.insert_one(datos)
+                print(datosTiempo)
+                #db.ciudades.insert_one(datosTiempo.__dict__)
 
         if error_msg:
             flash(error_msg, 'error')

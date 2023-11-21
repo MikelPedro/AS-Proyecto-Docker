@@ -5,17 +5,13 @@ services:
     build: .
     environment:
       - FLASK_APP=webtiempo.py
-      - MONGO_HOST=db
-      - MONGO_PORT=27017
     ports:
       - "5000:5000"
     depends_on:
-      - db
+      - mongo
     volumes:
       - .:/app
-    networks:
-      - mynetwork
-   
+    
   webserver:
     image: nginx:latest
     ports:
@@ -24,16 +20,22 @@ services:
       - ./nginx.conf:/etc/nginx/nginx.conf
     depends_on:
       - app
-    networks:
-      - mynetwork
-    
-  
-  db:
+ 
+
+  mongo:
     image: mongo:latest
-    volumes: 
-      - mongo_data:/data/db
+    container_name: mongo
+    restart: always
     ports:
-      - "27017:27017"
+      - "27018:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: "root"
+      MONGO_INITDB_ROOT_PASSWORD: "example"
+      MONGO_INITDB_DATABASE: "mydatabase"
+    volumes: 
+      - ./mongo_data:/data/db
+    
+
   
 volumes:
   mongo_data:
