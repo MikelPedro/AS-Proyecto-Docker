@@ -26,6 +26,10 @@
     <div class="container">
         {% for ciudad_guardada in data %}
             <div class="tarjeta">
+                <form method="POST" action="/cities">
+                    <input type="hidden" name="ciudad_id" value="{{ ciudad_guardada._id }}">
+                    <button class="borrar-ciudad" type="submit">X</button>
+                </form>
                 <div class="info-ciudad">
                     <p>{{ ciudad_guardada.lugar }} - {{ ciudad_guardada.fecha }}</p>
                     <p>{{ ciudad_guardada.tempAct }}°C</p>
@@ -38,5 +42,6 @@
         {% endfor %}
     </div>
 
+   
 </body>
 </html>

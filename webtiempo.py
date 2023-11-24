@@ -1,9 +1,9 @@
-from flask import Flask, render_template, request, flash
+from flask import Flask, redirect, render_template, request, flash
 from tiempo import main as get_datosTiempo
 from datetime import datetime
 from pymongo import MongoClient
 from pymongo.errors import ServerSelectionTimeoutError, OperationFailure
-import os
+from bson import ObjectId
 
 app = Flask(__name__, template_folder='./app')
 app.config['SECRET_KEY'] = 'SecretoLlave' # esto es para le flash
@@ -44,6 +44,12 @@ def index():
                 # Crear un nuevo diccionario con solo los atributos que quieres insertar
             else:
 
+                fecha_hora_actual = datetime.now()
+
+                
+                formato_deseado = " %d-%m-%Y %H:%M:%S" # transforma en este formato la fecha y hora actual
+                fecha_hora_format = fecha_hora_actual.strftime(formato_deseado)
+
                 datos = {
                     'lugar': datosTiempo.lugar,
                     'tempAct': datosTiempo.tempAct,
@@ -52,7 +58,7 @@ def index():
                     'humedad': datosTiempo.humedad,
                     'descrip': datosTiempo.descrip,
                     'icono': datosTiempo.icono,
-                    'fecha': datetime.now()  # Añadir la fecha actual
+                    'fecha': fecha_hora_format # Añadir la fecha actual
                 }
 
                 db.ciudades.insert_one(datos)
@@ -64,17 +70,21 @@ def index():
         else:
             flash('Ciudad añadida exitosamente!', 'success')
 
-       
-   # ciudades_guardadas = mongo.db.ciudades.find()
     return render_template('index.html', data=datosTiempo)
 
-@app.route('/cities')
+@app.route('/cities', methods=['GET', 'POST'])
 def cities():
+    if request.method == 'GET':
+        lista = db.ciudades.find() # Devuelve una lista con todas las ciudades guardadas en bd
 
-    lista = db.ciudades.find()
+        return render_template('cities.html', data=lista)
 
-    #cities_data = list(db.ciudades.find())
-    return render_template('cities.html', data=lista)
+    elif request.method == 'POST':
+        
+        ciudad_id = request.form.get('ciudad_id')
+        
+        db.ciudades.delete_one({'_id': ObjectId(ciudad_id)})
+        return redirect('/cities')
 
 
 if __name__ == '__main__':
