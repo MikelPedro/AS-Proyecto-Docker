@@ -1,9 +1,11 @@
 FROM python:3-alpine3.15
 
+# Establece el directorio de trabajo
 WORKDIR /entrega
-COPY . /entrega
-# Instala las dependencias
 
+COPY . /entrega
+
+# Instala las dependencias
 RUN pip install -r requirements.txt
 
 # Copia los archivos de la aplicación Flask
