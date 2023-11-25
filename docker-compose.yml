@@ -10,7 +10,7 @@ services:
     depends_on:
       - mongo
     volumes:
-      - .:/app
+      - .:/entrega
     
   webserver:
     image: nginx:latest
@@ -33,7 +33,7 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: "example"
       MONGO_INITDB_DATABASE: "mydatabase"
     volumes: 
-      - ./mongo_data:/data/db
+      - mongo_data:/data/db
     
 
   
