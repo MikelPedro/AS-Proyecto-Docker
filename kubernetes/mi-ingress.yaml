@@ -1,31 +1,17 @@
-# ingress.yaml
+# mi-ingress.yaml
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: my-ingress
 spec:
   rules:
-    # hace falta host?
-    http:
-      paths:
-        - path: /mongo
-          pathType: Prefix
-          backend:
-            service:
-              name: mongodb-service
-              port:
-                number: 27017
-        - path: /nginx
-          pathType: Prefix
-          backend:
-            service:
-              name: nginx-service
-              port:
-                number: 80
-        - path: /web
-          pathType: Prefix
-          backend:
-            service:
-              name: web-service
-              port:
-                number: 8080
+    - host: mydomain.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: imagen-propia-cluster-ip-service
+                port:
+                  number: 8080  # Reemplaza con el puerto de tu servicio

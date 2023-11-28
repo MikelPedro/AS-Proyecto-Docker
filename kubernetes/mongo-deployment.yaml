@@ -6,11 +6,11 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      component: mongo
+      component: db
   template:
     metadata:
       labels:
-        component: mongo
+        component: db
     spec:
       containers:
       - name: mongo-container
