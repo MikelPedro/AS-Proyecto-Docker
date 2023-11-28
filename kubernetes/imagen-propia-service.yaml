@@ -4,7 +4,7 @@ metadata:
   name: web-service
 spec:
   selector:
-    component: web
+    component: app
   ports:
   - port: 8080
     targetPort: 8080

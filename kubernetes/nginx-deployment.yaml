@@ -6,12 +6,12 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      component: webnginx
+      component: app
   template:
     metadata:
       labels:
-        component: webnginx
+        component: app
     spec:
       containers:
       - name: nginx-container
-        image: nginx:latest
+        image: mikelpe/nginx-as:latest

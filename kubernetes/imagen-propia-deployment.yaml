@@ -6,11 +6,11 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      component: web
+      component: app
   template:
     metadata:
       labels:
-        component: web
+        component: app
     spec:
       containers:
       - name: mi-pod-imagen
