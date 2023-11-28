@@ -6,11 +6,11 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      component: nginx
+      component: webnginx
   template:
     metadata:
       labels:
-        component: nginx
+        component: webnginx
     spec:
       containers:
       - name: nginx-container

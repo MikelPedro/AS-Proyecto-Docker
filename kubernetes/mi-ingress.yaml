@@ -1,17 +1,15 @@
-# mi-ingress.yaml
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: my-ingress
 spec:
   rules:
-    - host: mydomain.com
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: imagen-propia-cluster-ip-service
-                port:
-                  number: 8080  # Reemplaza con el puerto de tu servicio
+  - http:
+      paths:
+      - path: /*
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: webservice
+            port:
+              number: 5000

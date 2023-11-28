@@ -1,0 +1,7 @@
+# Utiliza la imagen oficial de Nginx como base
+FROM nginx:latest
+
+# Copia tu archivo de configuración al directorio adecuado
+COPY nginx.conf /etc/nginx/nginx.conf
+
+EXPOSE 80

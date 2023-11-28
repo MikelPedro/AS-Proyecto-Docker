@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: imagenpropia-deployment
+  name: web-deployment
 spec:
   replicas: 1
   selector:
@@ -14,5 +14,6 @@ spec:
     spec:
       containers:
       - name: mi-pod-imagen
-        image: mikelpe/as-entrega-docker-imagen:latest
-      
+        image: mikelpe/as-entrega-docker-imagen:kubeprueba
+        ports:
+        - containerPort: 5000

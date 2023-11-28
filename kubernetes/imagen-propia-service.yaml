@@ -1,8 +1,7 @@
-# custom-app-service.yaml
 apiVersion: v1
 kind: Service
 metadata:
-  name: imagen-propia-cluster-ip-service
+  name: web-service
 spec:
   selector:
     component: web
