@@ -15,7 +15,7 @@ spec:
         service: nginx
     spec:
       containers:
-        - image: mikelpe/nginx-as
+        - image: mikelpe/nginx-as:1.0.0
           name: nginx
           ports:
             - containerPort: 80
