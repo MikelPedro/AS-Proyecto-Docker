@@ -1,12 +1,13 @@
-# nginx-service.yaml
 apiVersion: v1
 kind: Service
 metadata:
-  name: nginx-service
+  labels:
+    service: nginx
+  name: nginx
 spec:
-  type: ClusterIP
-  selector:
-    component: app
   ports:
-  - port: 80
-    targetPort: 80
+    - name: "80"
+      port: 80
+      targetPort: 80
+  selector:
+    service: nginx

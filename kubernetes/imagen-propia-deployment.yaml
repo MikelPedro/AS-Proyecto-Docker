@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: web-deployment
+  name: app
 spec:
   replicas: 1
   selector:
@@ -13,7 +13,7 @@ spec:
         component: app
     spec:
       containers:
-      - name: mi-pod-imagen
-        image: mikelpe/as-entrega-docker-imagen:kubeprueba
+      - name: app
+        image: mikelpe/as-entrega-docker-imagen:kubeprueba2
         ports:
         - containerPort: 5000

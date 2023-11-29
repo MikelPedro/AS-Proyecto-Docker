@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: mongo-deployment
+  name: db
 spec:
   replicas: 1
   selector:
@@ -13,7 +13,7 @@ spec:
         component: db
     spec:
       containers:
-      - name: mongo-container
+      - name: db
         image: mongo:latest
         ports:
         - containerPort: 27017
