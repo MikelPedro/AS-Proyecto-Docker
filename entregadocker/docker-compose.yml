@@ -12,7 +12,7 @@ services:
     depends_on:
       - mongo
     volumes:
-      - .:/entrega
+      - .:/entrega/entregadocker
     
   webserver:
     build:

@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
       - name: app
-        image: mikelpe/as-entrega-docker-imagen:kubeprueba2
+        image: mikelpe/as-entrega-docker-imagen:kubeprueba3
         ports:
         - containerPort: 5000

@@ -5,6 +5,7 @@ metadata:
     service: app
   name: app
 spec:
+  type: ClusterIP
   ports:
     - name: "5000"
       port: 5000

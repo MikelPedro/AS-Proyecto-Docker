@@ -6,7 +6,7 @@ from pymongo.errors import ServerSelectionTimeoutError, OperationFailure
 from bson import ObjectId
 
 app = Flask(__name__, template_folder='./app')
-app.config['SECRET_KEY'] = 'SecretoLlave' # esto es para le flash
+app.config['SECRET_KEY'] = 'SecretoLlave' # esto es para el flash
 URL_ORIGINAL = "https://api.openweathermap.org/data/2.5/weather?id="
 API_KEY = open('api_key','r').read()
 
