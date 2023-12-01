@@ -14,6 +14,7 @@ class Tiempo:
     descrip: str
     icono: str
     code: int
+    pais: str
 
 def get_datosTiempo(ciudad,API_KEY):
     respuesta = requests.get(URL_ORIGINAL + str(ciudad) + "&appid=" + str(API_KEY)+ "&units=metric")
@@ -29,7 +30,8 @@ def get_datosTiempo(ciudad,API_KEY):
             humedad = datos['main']['humidity'],
             descrip = datos['weather'][0]['description'],
             icono = datos['weather'][0]['icon'],
-            code = datos['cod']
+            code = datos['cod'],
+            pais = datos['sys']['country']
         )
     else:
         data = 'Error'

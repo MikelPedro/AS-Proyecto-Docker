@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registros de ciudades</title>
+    <style>
+        /* Estilos CSS pueden ir aquí o en un archivo separado */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: rgb(26, 90, 143);
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+
+        nav {
+            background-color:  rgb(101, 159, 206);
+            padding: 10px;
+        }
+
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        li {
+            float: left;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        section {
+            padding: 20px;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .tarjeta {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: 10px;
+            overflow: hidden;
+            width: calc(25% - 20px); /* Ancho máximo de 25% con márgenes */
+            box-sizing: border-box; /* Incluye el padding y el border en el cálculo del ancho */
+            transition: transform 0.3s ease;
+        }
+
+        .tarjeta:hover {
+            transform: scale(1.05);
+        }
+
+        .info-ciudad {
+            padding: 10px;
+        }
+
+        .info-ciudad p {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Registros de ciudades</h1>
+    </header>
+
+    <nav>
+        <a href="/">Inicio</a>
+        <a href="/registro">Actualizar</a>
+    </nav>
+
+    <section>
+        <div class="container">
+            {% for ciudad_guardada in data %}
+                <div class="tarjeta">
+                    <div class="info-ciudad">
+                        <p>Ciudad: {{ ciudad_guardada.lugar }}</p>
+                        <p>Código de país: {{ ciudad_guardada.pais}}</p>
+                        <p>Temperatura Actual: {{ ciudad_guardada.tempAct }}°C</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+   
+</body>
+</html>

@@ -6,7 +6,7 @@ from pymongo.errors import ServerSelectionTimeoutError, OperationFailure
 from bson import ObjectId
 import os
 
-app = Flask(__name__, template_folder='./html')
+app = Flask(__name__, template_folder='./templates')
 app.config['SECRET_KEY'] = 'SecretoLlave' # esto es para el flash
 URL_ORIGINAL = "https://api.openweathermap.org/data/2.5/weather?id="
 API_KEY = open('api_key','r').read()
@@ -54,7 +54,8 @@ def index():
                     'humedad': datosTiempo.humedad,
                     'descrip': datosTiempo.descrip,
                     'icono': datosTiempo.icono,
-                    'fecha': fecha_hora_format # Añadir la fecha actual
+                    'fecha': fecha_hora_format, # Añadir la fecha actual
+                    'pais' : datosTiempo.pais
                 }
 
                 db.ciudades.insert_one(datos)
@@ -82,6 +83,15 @@ def cities():
         db.ciudades.delete_one({'_id': ObjectId(ciudad_id)})
         return redirect('/cities')
 
+
+@app.route('/registro', methods=['GET'])
+def registro():
+    if request.method == 'GET':
+        if db.registros.count_documents({}) > 15:  # Si hay más de 15 registros, hace reset
+            db.registros.delete_many({})
+    
+        lista = list(db.registros.find())  # Convertir el cursor a una lista antes de pasarlo al template
+        return render_template('registro.html', data=lista)
 
 if __name__ == '__main__':
 

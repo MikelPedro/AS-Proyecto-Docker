@@ -1,0 +1,15 @@
+# Utiliza la imagen oficial de python como base
+FROM python:3.9-slim-buster
+
+WORKDIR /api
+# Instala la biblioteca pymongo
+RUN pip install pymongo
+
+RUN pip install requests
+
+COPY api_key /api
+COPY list.txt /api
+COPY tiempo.py /api
+COPY insercionesautomaticas.py /api
+# Ejecuta el archivo g.py
+CMD ["python", "insercionesautomaticas.py"]
