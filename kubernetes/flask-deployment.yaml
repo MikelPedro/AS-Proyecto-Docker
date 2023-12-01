@@ -1,19 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: app
+  name: flask
+  labels:
+    name: flask
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: app
+      app: flask
   template:
     metadata:
       labels:
-        app: app
+        app: flask
     spec:
       containers:
-      - name: app
-        image: mikelpe/as-entrega-docker-imagen:kubeprueba3
-        ports:
-        - containerPort: 5000
+      - name: flask
+        image: mikelpe/as-entrega-flask:latest
+        env:
+        - name: FLASK_APP
+          value: "webtiempo.py"

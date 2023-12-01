@@ -2,20 +2,19 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    service: nginx
-  name: nginx
+    service: api
+  name: api
 spec:
   replicas: 1
   selector:
     matchLabels:
-      service: nginx
+      service: api
   template:
     metadata:
       labels:
-        service: nginx
+        service: api
     spec:
       containers:
-        - image: mikelpe/nginx-as:1.0.6
-          name: nginx
-          ports:
-            - containerPort: 80
+        - image: mikelpe/as-entrega-api:latest
+          name: api
+          
