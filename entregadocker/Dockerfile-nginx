@@ -2,10 +2,11 @@
 FROM nginx:latest
 
 # Copia tu archivo de configuración al directorio adecuado
-WORKDIR /etc/nginx
+RUN mkdir /app
+WORKDIR /app
+COPY . /app
 
-COPY nginx.conf /etc/nginx/nginx.conf
-COPY ./archivoserver /etc/nginx/sites-available
+#COPY ./archivoserver /etc/nginx/sites-available
 
 EXPOSE 80
 

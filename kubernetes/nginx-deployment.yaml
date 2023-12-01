@@ -15,9 +15,7 @@ spec:
         service: nginx
     spec:
       containers:
-        - image: mikelpe/nginx-as:1.0.1
+        - image: mikelpe/nginx-as:1.0.6
           name: nginx
           ports:
             - containerPort: 80
-          tty: true
-      restartPolicy: Always

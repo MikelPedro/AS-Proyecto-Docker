@@ -4,8 +4,9 @@ from datetime import datetime
 from pymongo import MongoClient
 from pymongo.errors import ServerSelectionTimeoutError, OperationFailure
 from bson import ObjectId
+import os
 
-app = Flask(__name__, template_folder='./app')
+app = Flask(__name__, template_folder='./html')
 app.config['SECRET_KEY'] = 'SecretoLlave' # esto es para el flash
 URL_ORIGINAL = "https://api.openweathermap.org/data/2.5/weather?id="
 API_KEY = open('api_key','r').read()
@@ -18,10 +19,6 @@ client = MongoClient(mongo_uri)
 db = client.mydatabase
 
 
-#def ciudad_existe(ciudad):
-    # Verifica si la ciudad ya existe en la base de datos
-#    return mongo.db.ciudades.find_one({'lugar': ciudad}) is not None
-
 @app.route('/', methods=[ 'GET', 'POST'])
 def index():
     
@@ -31,12 +28,11 @@ def index():
     if request.method == 'POST':
         ciudad = request.form['ciudad']
         print(f"Ciudad recibida: {ciudad}")
-        #existe = mongo.db.ciudades.find_one({'lugar': datosTiempo.lugar})
+
 
         if not ciudad:
             error_msg = "Introduzca una ciudad"
-            #elif ciudad_existe(ciudad):
-            #    error_msg = f'La ciudad {ciudad} ya está en la base de datos'
+            
         else:
             datosTiempo = get_datosTiempo(ciudad)
             if datosTiempo == 'Error':
