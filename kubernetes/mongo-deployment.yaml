@@ -6,11 +6,11 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: mongodb
+      component: mongodb
   template:
     metadata:
       labels:
-        app: mongodb
+        component: mongodb
     spec:
       containers:
       - name: mongodb
@@ -24,4 +24,3 @@ spec:
       - name: mongodb-data
         persistentVolumeClaim:
           claimName: mongodb-pvc
-

@@ -1,20 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  labels:
-    service: api
-  name: api
+  name: api-deployment
 spec:
   replicas: 1
   selector:
     matchLabels:
-      service: api
+      app: api
   template:
     metadata:
       labels:
-        service: api
+        app: api
     spec:
       containers:
-        - image: mikelpe/as-entrega-api:latest
-          name: api
+        - name: api-container
+          image: mikelpe/as-entrega-api:latest
+          
           
