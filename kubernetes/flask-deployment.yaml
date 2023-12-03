@@ -1,8 +1,11 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: web
+  name: python-webapp
+  labels:
+    app: web
 spec:
+  replicas: 1
   selector:
     matchLabels:
       app: web
@@ -12,12 +15,8 @@ spec:
         app: web
     spec:
       containers:
-      - name: web
+      - name: webapp
         image: mikelpe/as-entrega-flask:latest
-        resources:
-          limits:
-            memory: "128Mi"
-            cpu: "500m"
         ports:
         - containerPort: 5000
         env:

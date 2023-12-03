@@ -15,5 +15,15 @@ spec:
       containers:
         - name: api-container
           image: mikelpe/as-entrega-api:latest
+          env:
+            - name: MONGODB_DB
+              value: mydatabase
+            - name: MONGODB_PORT
+              value: "27017"
+            - name: MONGODB_USERNAME
+              value: root
+            - name: MONGODB_PASSWORD
+              value: example
+        
           
           

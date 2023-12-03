@@ -4,7 +4,7 @@ FROM python:3.9-slim-buster
 WORKDIR /api
 # Instala la biblioteca pymongo
 RUN pip install pymongo
-
+RUN pip install python-dotenv
 RUN pip install requests
 
 COPY api_key /api

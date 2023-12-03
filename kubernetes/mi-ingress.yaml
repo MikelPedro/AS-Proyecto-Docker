@@ -1,25 +1,19 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: minikube-ingress
+  name: minimal-ingress
   annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
+  ingressClassName: nginx-example
   rules:
-  - host: hello.world
-    http:
+  - http:
       paths:
-      - path: /
+      - path: /*
         pathType: ImplementationSpecific
         backend:
           service:
             name: web-service
             port:
-              number: 5000
-      - path: /cities
-        pathType: ImplementationSpecific
-        backend:
-          service:
-            name: web-service
-            port:
-              number: 5000
-  
+              number: 80
+

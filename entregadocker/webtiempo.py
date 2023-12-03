@@ -4,17 +4,16 @@ from datetime import datetime
 from pymongo import MongoClient
 from pymongo.errors import ServerSelectionTimeoutError, OperationFailure
 from bson import ObjectId
-import os
+
+
 
 app = Flask(__name__, template_folder='./templates')
 app.config['SECRET_KEY'] = 'SecretoLlave' # esto es para el flash
 URL_ORIGINAL = "https://api.openweathermap.org/data/2.5/weather?id="
 API_KEY = open('api_key','r').read()
 
-
-mongo_uri = "mongodb://root:example@mongo:27017/mydatabase?authSource=admin"  # Reemplaza con tu propia URI si es necesario
-
 # Conectarse a la base de datos
+mongo_uri = "mongodb://root:example@mongo:27017/mydatabase?authSource=admin" 
 client = MongoClient(mongo_uri)
 db = client.mydatabase
 
@@ -87,10 +86,10 @@ def cities():
 @app.route('/registro', methods=['GET'])
 def registro():
     if request.method == 'GET':
-        if db.registros.count_documents({}) > 15:  # Si hay más de 15 registros, hace reset
-            db.registros.delete_many({})
+        if db.almacen_tiempo.count_documents({}) > 15:  # Si hay más de 15 registros, hace reset
+            db.almacen_tiempo.delete_many({})
     
-        lista = list(db.registros.find())  # Convertir el cursor a una lista antes de pasarlo al template
+        lista = list(db.almacen_tiempo.find())  # Convertir el cursor a una lista antes de pasarlo al template
         return render_template('registro.html', data=lista)
 
 if __name__ == '__main__':
