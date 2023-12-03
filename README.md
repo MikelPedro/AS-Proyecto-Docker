@@ -18,3 +18,20 @@ Hacer docker compose
 sudo docker compose up
 ```
 ## Ir al navegador y poner la IP de la instancia, si no va entonces poner IP:80/
+## Kubernetes
+
+Posicionarse en la carpeta del repositorio
+
+Iniciar minikube
+
+```bash
+minikube start
+```
+
+```bash
+kubectl apply -f kubernetes/
+```
+
+```bash
+minikube tunnel
+```
