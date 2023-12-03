@@ -8,11 +8,11 @@ import os
 URL_ORIGINAL = "https://api.openweathermap.org/data/2.5/weather?id="
 API_KEY = open('api_key','r').read()
 # Establece la conexión con el servidor MongoDB
-mongo_uri = "mongodb://root:example@mongo:27017/mydatabase?authSource=admin" 
+uri ="mongodb+srv://root:example@cluster0.5blutl1.mongodb.net/?retryWrites=true&w=majority"
 
 
 # Conectarse a la base de datos
-client = MongoClient(mongo_uri)
+client = MongoClient(uri)
 db = client.mydatabase
 coleccion = db.almacen_tiempo
 # Leer ciudades desde el archivo

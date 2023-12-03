@@ -13,8 +13,9 @@ URL_ORIGINAL = "https://api.openweathermap.org/data/2.5/weather?id="
 API_KEY = open('api_key','r').read()
 
 # Conectarse a la base de datos
-mongo_uri = "mongodb://root:example@mongo:27017/mydatabase?authSource=admin" 
-client = MongoClient(mongo_uri)
+#mongo_uri = "mongodb://root:example@mongo:27017/mydatabase?authSource=admin" 
+uri ="mongodb+srv://root:example@cluster0.5blutl1.mongodb.net/?retryWrites=true&w=majority"
+client = MongoClient(uri)
 db = client.mydatabase
 
 

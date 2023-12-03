@@ -11,8 +11,6 @@ services:
       - "80:5000"
     depends_on:
       - mongo
-    volumes:
-      - .:/entrega/entregadocker
     
   api:
     build:
